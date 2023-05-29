@@ -1,5 +1,5 @@
 FROM ubuntu:15.04
-MAINTAINER Alex Galkin <alex@galkin.club>
+MAINTAINER Phil Westlake
 
 #
 # Licensed to the Apache Software Foundation (ASF) under one or more
@@ -48,7 +48,7 @@ RUN apt-get update -qqy \
     iproute \
     openssh-client ssh-askpass\
     ca-certificates \
-    openjdk-8-jdk \
+    openjdk-17-jdk \
     tar zip unzip \
     wget curl \
     git \
@@ -57,7 +57,7 @@ RUN apt-get update -qqy \
     python python-pip groff \
     rlwrap \
   && rm -rf /var/lib/apt/lists/* \
-  && sed -i 's/securerandom\.source=file:\/dev\/random/securerandom\.source=file:\/dev\/urandom/' ./usr/lib/jvm/java-8-openjdk-amd64/jre/lib/security/java.security
+  && sed -i 's/securerandom\.source=file:\/dev\/random/securerandom\.source=file:\/dev\/urandom/' ./usr/lib/jvm/java-17-openjdk-amd64/jre/lib/security/java.security
 
 # workaround https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=775775
 RUN [ -f "/etc/ssl/certs/java/cacerts" ] || /var/lib/dpkg/info/ca-certificates-java.postinst configure
